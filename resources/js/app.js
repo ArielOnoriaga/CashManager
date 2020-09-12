@@ -28,5 +28,5 @@ Vue.component('Inicio', require('./components/Inicio.vue').default);
  */
 
 const app = new Vue({
-    el: '#app',
+  el: '#app',
 });
