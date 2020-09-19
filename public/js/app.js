@@ -1950,6 +1950,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2037,12 +2039,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Main",
   data: function data() {
     return {
       saldoActual: 6000,
-      flujoDeDinero: 2000
+      flujoDeDinero: 2000,
+      ingresosEgresos: 0,
+      tipoDeIngresoEgreso: ''
     };
   },
   computed: {
@@ -2053,6 +2063,16 @@ __webpack_require__.r(__webpack_exports__);
   watch: {
     totalRandom: function totalRandom(newValue, oldValue) {
       console.log(newValue, oldValue);
+    }
+  },
+  methods: {
+    ingresoDeDinero: function ingresoDeDinero() {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/IngresoDeDinero", {
+        ingreso: this.ingresosEgresos,
+        tipo: this.tipoDeIngresoEgreso
+      }).then(function (resolve) {
+        console.log(resolve.data);
+      });
     }
   }
 });
@@ -6491,7 +6511,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".width-of-main[data-v-b9c20fb8] {\n  width: calc(100vw - 3rem);\n}\n.container-info-cartera[data-v-b9c20fb8] {\n  width: 32rem;\n}\n\n", ""]);
+exports.push([module.i, ".width-of-main[data-v-b9c20fb8] {\n  width: calc(100vw - 4rem);\n  height: calc(100vh - 2.9rem);\n}\n.container-info-cartera[data-v-b9c20fb8] {\n  width: 32rem;\n}\n\n", ""]);
 
 // exports
 
@@ -38365,7 +38385,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "h-full width-of-main flex pl-4 pt-8" }, [
+  return _c("div", { staticClass: "width-of-main flex pl-4 pt-8" }, [
     _c("div", { staticClass: "flex h-48 flex-wrap container-info-cartera" }, [
       _c("div", { staticClass: "flex justify-between w-full" }, [
         _c(
@@ -38390,7 +38410,135 @@ var render = function() {
         _vm._m(0)
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _c(
+        "div",
+        {
+          staticClass:
+            "w-full h-32 bg-pink-100 bg-opacity-50 shadow-sm mt-4 p-2 items-center justify-start rounded flex flex-wrap"
+        },
+        [
+          _c("div", { staticClass: "w-11/12 flex flex-wrap" }, [
+            _c(
+              "label",
+              {
+                staticClass: "w-full text-sm font-light",
+                attrs: { for: "ingresosEgresos" }
+              },
+              [_vm._v("\n          Actualizar ingresos/egresos\n        ")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.ingresosEgresos,
+                  expression: "ingresosEgresos"
+                }
+              ],
+              staticClass:
+                "bg-pink-200 placeholder-pink-100 rounded-md pl-2 w-full",
+              attrs: {
+                id: "ingresosEgresos",
+                type: "number",
+                placeholder: "4000"
+              },
+              domProps: { value: _vm.ingresosEgresos },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.ingresosEgresos = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "w-11/12 flex items-center justify-between" },
+            [
+              _c("div", { staticClass: "w-3/5 flex flex-wrap" }, [
+                _c(
+                  "label",
+                  {
+                    staticClass: "w-full text-sm font-light",
+                    attrs: { for: "ingresosEgresos" }
+                  },
+                  [_vm._v("\n            Tipo\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.tipoDeIngresoEgreso,
+                        expression: "tipoDeIngresoEgreso"
+                      }
+                    ],
+                    staticClass:
+                      "bg-pink-200 placeholder-pink-100 rounded-md font-light text-pink-600 px-2 py-1 w-full",
+                    attrs: {
+                      id: "ingresosEgresos",
+                      type: "number",
+                      placeholder: "4000"
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.tipoDeIngresoEgreso = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { id: "1", value: "comida" } }, [
+                      _vm._v("\n              Comida\n            ")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { id: "2", value: "Bebidas" } }, [
+                      _vm._v("\n              Bebidas\n            ")
+                    ])
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-auto h-6 mt-5" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3",
+                    on: { click: _vm.ingresoDeDinero }
+                  },
+                  [_vm._v("\n            Ingreso\n          ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass:
+                      "rounded-full font-semibold bg-red-400 text-black opacity-75 px-3"
+                  },
+                  [_vm._v("\n            Egreso\n          ")]
+                )
+              ])
+            ]
+          )
+        ]
+      )
     ])
   ])
 }
@@ -38415,99 +38563,6 @@ var staticRenderFns = [
           _vm._v("\n          Mayor egreso : $ "),
           _c("b", { staticClass: "text-red-500" }, [_vm._v(" 3.500 ")])
         ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "w-full h-32 bg-pink-100 bg-opacity-50 shadow-sm mt-4 p-2 items-center justify-start rounded flex flex-wrap"
-      },
-      [
-        _c("div", { staticClass: "w-11/12 flex flex-wrap" }, [
-          _c(
-            "label",
-            {
-              staticClass: "w-full text-sm font-light",
-              attrs: { for: "ingresosEgresos" }
-            },
-            [_vm._v("\n          Actualizar ingresos/egresos\n        ")]
-          ),
-          _vm._v(" "),
-          _c("input", {
-            staticClass:
-              "bg-pink-200 placeholder-pink-100 rounded-md pl-2 w-full",
-            attrs: {
-              id: "ingresosEgresos",
-              type: "number",
-              placeholder: "4000"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "w-11/12 flex items-center justify-between" },
-          [
-            _c("div", { staticClass: "w-3/5 flex flex-wrap" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "w-full text-sm font-light",
-                  attrs: { for: "ingresosEgresos" }
-                },
-                [_vm._v("\n            Tipo\n          ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  staticClass:
-                    "bg-pink-200 placeholder-pink-100 rounded-md font-light text-pink-600 px-2 py-1 w-full",
-                  attrs: {
-                    id: "ingresosEgresos",
-                    type: "number",
-                    placeholder: "4000"
-                  }
-                },
-                [
-                  _c("option", { attrs: { id: "1", value: "comida" } }, [
-                    _vm._v("\n              Comida\n            ")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { id: "2", value: "Bebidas" } }, [
-                    _vm._v("\n              Bebidas\n            ")
-                  ])
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "w-auto h-6 mt-5" }, [
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3"
-                },
-                [_vm._v("\n            Ingreso\n          ")]
-              ),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "rounded-full font-semibold bg-red-400 text-black opacity-75 px-3"
-                },
-                [_vm._v("\n            Egreso\n          ")]
-              )
-            ])
-          ]
-        )
       ]
     )
   }
@@ -50687,24 +50742,9 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
 Vue.component('Inicio', __webpack_require__(/*! ./components/Inicio.vue */ "./resources/js/components/Inicio.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to

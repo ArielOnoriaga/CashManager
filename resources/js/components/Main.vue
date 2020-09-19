@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full width-of-main flex pl-4 pt-8">
+  <div class="width-of-main flex pl-4 pt-8">
     <div class="flex h-48 flex-wrap container-info-cartera">
       <div class="flex justify-between w-full">
         <div class="w-56 flex flex-wrap justify-start items-center h-16 pl-2 bg-pink-100 bg-opacity-50 shadow-sm rounded">
@@ -33,6 +33,7 @@
 
           <input
             id="ingresosEgresos"
+            v-model="ingresosEgresos"
             type="number"
             placeholder="4000"
             class="bg-pink-200 placeholder-pink-100 rounded-md pl-2 w-full"
@@ -50,6 +51,7 @@
 
             <select
               id="ingresosEgresos"
+              v-model="tipoDeIngresoEgreso"
               type="number"
               placeholder="4000"
               class="bg-pink-200 placeholder-pink-100 rounded-md font-light text-pink-600 px-2 py-1 w-full"
@@ -71,7 +73,10 @@
           </div>
 
           <div class="w-auto h-6 mt-5">
-            <button class="rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3">
+            <button
+              class="rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3"
+              @click="ingresoDeDinero"
+            >
               Ingreso
             </button>
 
@@ -86,6 +91,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name:"Main",
 
@@ -93,6 +100,8 @@ export default {
     return {
       saldoActual: 6000,
       flujoDeDinero: 2000,
+      ingresosEgresos: 0,
+      tipoDeIngresoEgreso: ''
     };
   },
 
@@ -106,13 +115,27 @@ export default {
     totalRandom(newValue, oldValue) {
       console.log(newValue, oldValue);
     }
+  },
+
+  methods: {
+    ingresoDeDinero() {
+      axios
+        .post("/IngresoDeDinero", {
+          ingreso: this.ingresosEgresos,
+          tipo: this.tipoDeIngresoEgreso
+        })
+        .then(resolve => {
+          console.log(resolve.data);
+        });
+    }
   }
 };
 </script>
 
 <style scoped>
 .width-of-main {
-  width: calc(100vw - 3rem);
+  width: calc(100vw - 4rem);
+  height: calc(100vh - 2.9rem);
 }
 
 .container-info-cartera {
