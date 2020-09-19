@@ -1931,6 +1931,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -1949,6 +1950,71 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -38306,7 +38372,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "w-56 flex flex-wrap justify-start items-center h-16 pl-2 bg-red-400 rounded"
+              "w-56 flex flex-wrap justify-start items-center h-16 pl-2 bg-pink-100 bg-opacity-50 shadow-sm rounded"
           },
           [
             _c("h5", { staticClass: "w-full text-lg" }, [
@@ -38321,14 +38387,131 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _c("div", { staticClass: "w-56 h-16 bg-green-400 rounded" })
+        _vm._m(0)
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "w-full h-24 bg-blue-400 mt-4 rounded" })
+      _vm._m(1)
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "w-56 h-16 bg-pink-100 bg-opacity-50 shadow-sm rounded flex flex-wrap items-center justify-center px-2"
+      },
+      [
+        _c("h5", { staticClass: "w-full mb-1 text-lg" }, [
+          _vm._v("\n          Mayor ingreso : $ "),
+          _c("b", { staticClass: "text-green-500" }, [_vm._v(" 3.500 ")])
+        ]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "w-full mb-1 text-lg" }, [
+          _vm._v("\n          Mayor egreso : $ "),
+          _c("b", { staticClass: "text-red-500" }, [_vm._v(" 3.500 ")])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "w-full h-32 bg-pink-100 bg-opacity-50 shadow-sm mt-4 p-2 items-center justify-start rounded flex flex-wrap"
+      },
+      [
+        _c("div", { staticClass: "w-11/12 flex flex-wrap" }, [
+          _c(
+            "label",
+            {
+              staticClass: "w-full text-sm font-light",
+              attrs: { for: "ingresosEgresos" }
+            },
+            [_vm._v("\n          Actualizar ingresos/egresos\n        ")]
+          ),
+          _vm._v(" "),
+          _c("input", {
+            staticClass:
+              "bg-pink-200 placeholder-pink-100 rounded-md pl-2 w-full",
+            attrs: {
+              id: "ingresosEgresos",
+              type: "number",
+              placeholder: "4000"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "w-11/12 flex items-center justify-between" },
+          [
+            _c("div", { staticClass: "w-3/5 flex flex-wrap" }, [
+              _c(
+                "label",
+                {
+                  staticClass: "w-full text-sm font-light",
+                  attrs: { for: "ingresosEgresos" }
+                },
+                [_vm._v("\n            Tipo\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  staticClass:
+                    "bg-pink-200 placeholder-pink-100 rounded-md font-light text-pink-600 px-2 py-1 w-full",
+                  attrs: {
+                    id: "ingresosEgresos",
+                    type: "number",
+                    placeholder: "4000"
+                  }
+                },
+                [
+                  _c("option", { attrs: { id: "1", value: "comida" } }, [
+                    _vm._v("\n              Comida\n            ")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { id: "2", value: "Bebidas" } }, [
+                    _vm._v("\n              Bebidas\n            ")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "w-auto h-6 mt-5" }, [
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3"
+                },
+                [_vm._v("\n            Ingreso\n          ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "rounded-full font-semibold bg-red-400 text-black opacity-75 px-3"
+                },
+                [_vm._v("\n            Egreso\n          ")]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
