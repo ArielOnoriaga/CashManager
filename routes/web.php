@@ -6,4 +6,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('/IngresoDeDinero', "IngresarFlujoController@IngresoDeDinero")->name("ingresoDeDinero");
+Route::post('/IngresoDeDinero', "FlujoController@ingresoDeDinero")->name("ingresoDeDinero");
+Route::post('/EgresoDeDinero', "FlujoController@egresoDeDinero")->name("egresoDeDinero");

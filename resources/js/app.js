@@ -4,13 +4,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-Vue.component('Inicio', require('./components/Inicio.vue').default);
+Vue.component('Inicio', require('../views/Inicio.vue').default);
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+import Chartkick from 'vue-chartkick';
+import Chart from 'chart.js';
+
+Vue.use(Chartkick.use(Chart));
 
 const app = new Vue({
   el: '#app',
