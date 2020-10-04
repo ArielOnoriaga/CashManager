@@ -12,7 +12,8 @@ class FlujoController extends Controller
             ->insert([
                 "ingreso" => intval($data['ingreso']),
                 "tipo" => $data['tipo'],
-                "fecha" => $data['fecha']
+                "fecha" => $data['fecha'],
+                "id_tipo" => $data['id_tipo']
             ]);
     }
 
@@ -21,7 +22,8 @@ class FlujoController extends Controller
             ->insert([
                 "egreso" => intval($data['egreso']),
                 "tipo" => $data['tipo'],
-                "fecha" => $data['fecha']
+                "fecha" => $data['fecha'],
+                "id_tipo" => $data['id_tipo']
             ]);
     }
 

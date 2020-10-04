@@ -14,21 +14,21 @@
     </div>
 
     <div
-      class="w-full flex flex-col rounded-md p-2 bg-opacity-25"
+      class="w-full flex flex-col rounded-md p-2 bg-opacity-50"
       :class="isIncome ? 'bg-green-50' : 'bg-pink-50'"
     >
       <div
         class="mb-4 flex space-x-4 items-center"
         :class="isIncome ? 'text-green-500' : 'text-red-500'"
-        @click="isIncome = !isIncome"
       >
         <p class="text-lg font-semibold w-20">
           {{ isIncome ? "Ingreso" : "Egreso" }}
         </p>
 
         <div
-          class="w-12 h-5 rounded-full relative px-1 py-2 flex items-center"
+          class="w-12 h-5 rounded-full relative px-1 py-2 flex items-center cursor-pointer"
           :class="isIncome ? 'bg-green-300' : 'bg-red-300'"
+          @click="isIncome = !isIncome"
         >
           <div
             class="h-4 w-4 rounded-full bg-red-50 absolute transition duration-150"
@@ -51,7 +51,6 @@
 Array.prototype.isEmpty = function () {
   return !this.length ? true : false;
 };
-
 import axios from 'axios';
 
 import VFlujo from "./VFlujo";
@@ -117,14 +116,14 @@ export default {
   methods: {
     getingresos() {
       axios
-        .get("/api/bringAllIncome")
-        .then(response => this.ingresosList = response.data);
+        .get(`/api/bringAllIncome`)
+        .then(response => this.ingresosList =  response.data);
     },
 
     getEgresos() {
       axios
-        .get("/api/bringAllDeparture")
-        .then(response => this.egresosList = response.data);
+        .get(`/api/bringAllDeparture`)
+        .then(response => this.egresosList =  response.data);
     },
 
     calcularSaldoMaximo() {

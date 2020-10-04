@@ -34,17 +34,13 @@
           class="bg-pink-200 placeholder-pink-100 rounded-md font-light text-pink-600 px-2 py-1 w-full"
         >
           <option
-            id="1"
-            value="comida"
+            v-for="tipo in tipos"
+            :id="tipo.id"
+            ref="selectType"
+            :key="tipo.id"
+            :value="tipo.nombre"
           >
-            Comida
-          </option>
-
-          <option
-            id="2"
-            value="Bebidas"
-          >
-            Bebidas
+            {{ tipo.nombre }}
           </option>
         </select>
       </div>
@@ -91,6 +87,8 @@ import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import VueHicons from "vue-hicons";
 import moment from "moment";
 
+import axios from "axios";
+
 export default {
   name: "VFlujo",
 
@@ -103,14 +101,27 @@ export default {
     return {
       ingresosEgresos: 0,
       tipoDeIngresoEgreso: '',
-      fechaDeRegistro: ''
+      fechaDeRegistro: '',
+      tipos: [],
+      selectIdSelected: 0
     };
   },
 
   watch: {
     fechaDeRegistro(newValue, oldValue) {
       return newValue;
+    },
+
+    tipoDeIngresoEgreso(newValue, oldValue) {
+      this.$refs.selectType.forEach(select => {
+        if(select.selected)
+          this.selectIdSelected = select.id;
+      });
     }
+  },
+
+  mounted() {
+    this.getTypesList();
   },
 
   methods: {
@@ -121,11 +132,18 @@ export default {
         .post("/IngresoDeDinero", {
           ingreso: this.ingresosEgresos,
           tipo: this.tipoDeIngresoEgreso,
-          fecha: parseDateToIso
+          fecha: parseDateToIso,
+          id_tipo: this.selectIdSelected
         })
         .then(resolve => {
           this.$emit("actualizarListaDeIngresos");
         });
+    },
+
+    getTypesList() {
+      axios
+        .get("/api/getTypes")
+        .then(response => this.tipos = response.data);
     },
 
     egresoDeDinero() {
@@ -135,10 +153,11 @@ export default {
         .post("/EgresoDeDinero", {
           egreso: this.ingresosEgresos,
           tipo: this.tipoDeIngresoEgreso,
-          fecha: parseDateToIso
+          fecha: parseDateToIso,
+          id_tipo: this.selectIdSelected
         })
         .then(resolve => {
-          this.$emit("actualizarListaDeEgresos", "/api/bringAllDeparture", "egresosList");
+          this.$emit("actualizarListaDeEgresos");
         });
     },
   }

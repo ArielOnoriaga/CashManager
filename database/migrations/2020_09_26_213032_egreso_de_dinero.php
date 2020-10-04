@@ -17,6 +17,7 @@ class EgresoDeDinero extends Migration
             $table->increments("id")->start_from(0);
             $table->integer("egreso");
             $table->string("tipo");
+            $table->integer("id_tipo");
             $table->string("fecha");
         });
     }
