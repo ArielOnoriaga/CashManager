@@ -31,9 +31,8 @@
           @click="isIncome = !isIncome"
         >
           <div
-            class="h-4 w-4 rounded-full bg-red-50 absolute transition duration-150"
-            :class="isIncome ? 'bg-green-50' : 'bg-red-50'"
-            :style="isIncome ? 'left: .2rem' : 'right: .2rem'"
+            class="h-4 w-4 rounded-full transform transition-all bg-red-50 absolute duration-150"
+            :class="isIncome ? 'bg-green-50' : 'bg-red-50 translate-x-6'"
           />
         </div>
       </div>

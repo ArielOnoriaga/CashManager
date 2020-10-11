@@ -10,3 +10,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get("/bringAllIncome", "FlujoController@bringAllIncome")->name("bringAllIncome");
 Route::get("/bringAllDeparture", "FlujoController@bringAllDeparture")->name("bringAllDeparture");
 Route::get("/getTypes", "tipoDeGastoController@getTypes")->name("getTypes");
+Route::get("/getGastos", "tipoDeGastoController@getGastos")->name("getGastos");

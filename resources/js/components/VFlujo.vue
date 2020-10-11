@@ -54,25 +54,20 @@
             <VueHicons
               name="calendar"
               :filled="true"
-              clip-rule="evenodd"
-              fill-rule="evenodd"
-              :stroke-width="0"
-              view-box="0 0 20 20"
-              fill-color="#FFF"
               :width-icon="6"
             />
           </button>
         </DatePicker>
 
         <button
-          class="rounded-full font-semibold bg-green-300 text-black text-opacity-75 px-3"
+          class="rounded-full font-semibold bg-green-300 hover:bg-green-400 text-green-800 px-3"
           @click="ingresoDeDinero"
         >
           Ingreso
         </button>
 
         <button
-          class="rounded-full font-semibold bg-red-400 text-black opacity-75 px-3"
+          class="rounded-full font-semibold bg-red-400 hover:bg-red-500 text-red-800 px-3"
           @click="egresoDeDinero"
         >
           Egreso
